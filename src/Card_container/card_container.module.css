@@ -1,5 +1,7 @@
 .main_card_container {
-    /* outline: 5px solid black; */
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
     border-radius: 10px;
     box-shadow: 12px 12px 12px #5ce1e6;
     min-height: 40rem;
@@ -9,3 +11,27 @@
     margin-top: 2rem;
     background-color: #dbccec;
 }
+
+.card_square {
+    margin-top: 2rem;
+    border: 5px solid gray;
+    border-radius: 10px;
+    box-shadow: 4px 4px 4px black;
+    width: 10rem;
+    height: 16rem;
+    padding: 1rem;
+    transition: .5s;
+}
+
+.card_square:hover {
+    transform: scale(1.05);
+    box-shadow: 10px 10px 10px black;
+}
+
+.thumbnail {
+    height: 3rem;
+    width: 6rem;
+    border: 1px solid red;
+    margin-top: 1rem;
+}
+
