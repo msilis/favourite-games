@@ -1,0 +1,24 @@
+.button_container {
+    width: 10rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    margin-left: auto;
+    margin-right: auto;
+    border: 5px solid black;
+    border-radius: 10px;
+    box-shadow: 5px 5px 5px gray;
+    transition: .5s;
+}
+
+.button_container:hover {
+    cursor: pointer;
+}
+
+.button_container:active {
+    transform: translateY(5px);
+    box-shadow: 2px 2px 2px gray;
+}
+
+.button_text {
+    font-size: 1.5rem;
+}
