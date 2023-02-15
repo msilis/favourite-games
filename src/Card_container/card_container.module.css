@@ -1,10 +1,11 @@
 .main_card_container {
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
   gap: 2rem;
   border-radius: 10px;
   box-shadow: 12px 12px 12px #5ce1e6;
-  min-height: 40rem;
+  min-height: 24rem;
   max-width: 80rem;
   margin-left: auto;
   margin-right: auto;

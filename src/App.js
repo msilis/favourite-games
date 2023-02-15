@@ -7,6 +7,7 @@ import AddGame from "./AddGame/addGame";
 function App() {
   /* const games = [] */
   const [games, setGames] = useState([]);
+  const [addGame, setAddGame] = useState(false)
 
   useEffect(() => {
     async function getGames() {
@@ -22,15 +23,15 @@ function App() {
       setGames(gameArray);
     }
     getGames();
-  }, []);
+  }, [addGame]);
 
   console.log(Object.values(games));
 
   return (
     <div className="App">
       <Header />
-      <CardContainer gameList={games} />
-      <AddGame />
+      <CardContainer gameList={games} addGame={addGame}/>
+      <AddGame addGameStateSetter={setAddGame} addGameState={addGame}/>
     </div>
   );
 }

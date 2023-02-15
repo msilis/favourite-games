@@ -2,11 +2,15 @@ import { useRef } from "react";
 import Button from "../Button/button";
 import style from "./addGame.module.css";
 
-export default function AddGame() {
+export default function AddGame(props) {
   
   //Refs to grab form input
   const game_name = useRef();
   const game_description = useRef()
+
+  //props for adding game
+  let setAddGame = props.addGameStateSetter
+  let addGame = props.addGameState
 
   function submitFormHandler(){
     const data = {
@@ -23,7 +27,8 @@ export default function AddGame() {
     }).then((result)=> result.json).then((info)=> {console.log(info)})
 
     console.log(data)
-
+    setAddGame(true)
+    setAddGame(false)
   }
 
   return (
