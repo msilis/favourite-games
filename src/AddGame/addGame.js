@@ -27,8 +27,10 @@ export default function AddGame(props) {
     }).then((result)=> result.json).then((info)=> {console.log(info)})
 
     console.log(data)
-    setAddGame(true)
-    setAddGame(false)
+    setAddGame(!addGame)
+    console.log(addGame)
+    /* setAddGame(false) */
+    
   }
 
   return (
