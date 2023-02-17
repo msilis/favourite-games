@@ -1,13 +1,16 @@
 import style from "./card_container.module.css";
 import editIcon from "../Media/icons8-pencil-30.png";
 import deleteIcon from "../Media/icons8-remove-30.png";
-import { useState } from "react";
 
 export default function CardContainer(props) {
+  //props from app component
   const games = props.gameList;
-  console.log(games);
-  const [deleteGame, setDeleteGame] = useState(false)
+  const deleteGame = props.deleteGame;
+  const setDeleteGame = props.setDeleteGame;
+  const editClick = props.showModal;
+  const setGameId = props.setGameId;
 
+  //If games array has not been fetched yet, console log value instead of throwing eror
   if (
     typeof Object.values(games) === "undefined" ||
     typeof (Object.values(games) === null)
@@ -19,25 +22,23 @@ export default function CardContainer(props) {
 
   //Handle click on button
   function handleButtonClick(event) {
-    console.log(event.target["id"]);
-    console.log(event.target.parentNode.parentNode["id"]);
     const gameToDelete = event.target.parentNode.parentNode["id"];
-    console.log(gameToDelete)
-
+    //Check if delete button has been clicked and handle result
     if (event.target["id"] === "delete") {
-      setDeleteGame(!deleteGame);
-      console.log(deleteGame)
-      return fetch("/game/" + gameToDelete, {
+      //send delete request to API
+      fetch("/game/" + gameToDelete, {
         method: "DELETE",
         headers: {
-          'content-type': 'application/json;charset=utf-8'
-        }
+          "content-type": "application/json;charset=utf-8",
+        },
       }).then((response) => console.log(response));
-      
+      //Set delete state to whatever is opposite of already set state causing rerender of game card component
+      setDeleteGame(!deleteGame);
+    } else if (event.target["id"] === "edit") {
+      /* console.log(event.target.parentNode.parentNode["id"]) */
+      setGameId(event.target.parentNode.parentNode["id"])
+      editClick();
     }
-    
-    
-   
   }
 
   const gameCards = Object.values(games).map((game, index) => {

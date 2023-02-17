@@ -3,34 +3,36 @@ import Button from "../Button/button";
 import style from "./addGame.module.css";
 
 export default function AddGame(props) {
-  
   //Refs to grab form input
   const game_name = useRef();
-  const game_description = useRef()
+  const game_description = useRef();
 
   //props for adding game
-  let setAddGame = props.addGameStateSetter
-  let addGame = props.addGameState
+  let setAddGame = props.addGameStateSetter;
+  let addGame = props.addGameState;
 
-  function submitFormHandler(){
+  function submitFormHandler() {
+    
     const data = {
+      game_id: Math.floor((Math.random() * 80000) +1),
       game_name: game_name.current?.value,
-      game_description: game_description.current?.value
-    }
+      game_description: game_description.current?.value,
+    };
 
     fetch("/add_game", {
       method: "POST",
       headers: {
-        'Content-type': 'application/json'
+        "Content-type": "application/json",
       },
-      body: JSON.stringify(data)
-    }).then((result)=> result.json).then((info)=> {console.log(info)})
-
-    console.log(data)
-    setAddGame(!addGame)
-    console.log(addGame)
-    /* setAddGame(false) */
-    
+      body: JSON.stringify(data),
+    })
+      .then((result) => result.json())
+      .then((info) => {
+        console.log(info);
+      });
+    setAddGame(!addGame);
+    game_name.current.value = "";
+    game_description.current.value = "";
   }
 
   return (
