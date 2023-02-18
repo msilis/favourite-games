@@ -12,9 +12,9 @@ export default function AddGame(props) {
   let addGame = props.addGameState;
 
   function submitFormHandler() {
-    
+    //organise data to send to fetch request
     const data = {
-      game_id: Math.floor((Math.random() * 80000) +1),
+      game_id: Math.floor((Math.random() * 80000) +1), //generate (mostly) random number for game id
       game_name: game_name.current?.value,
       game_description: game_description.current?.value,
     };
@@ -26,11 +26,14 @@ export default function AddGame(props) {
       },
       body: JSON.stringify(data),
     })
-      .then((result) => result.json())
+      .then((result) => result.json)
       .then((info) => {
         console.log(info);
       });
+
+    //Toggle addGame state so component re-renders
     setAddGame(!addGame);
+    //Clear inputs on form
     game_name.current.value = "";
     game_description.current.value = "";
   }

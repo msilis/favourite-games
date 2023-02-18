@@ -37,6 +37,7 @@ export default function CardContainer(props) {
     } else if (event.target["id"] === "edit") {
       /* console.log(event.target.parentNode.parentNode["id"]) */
       setGameId(event.target.parentNode.parentNode["id"])
+      //Call edit click function to bring up modal
       editClick();
     }
   }

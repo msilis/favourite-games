@@ -8,10 +8,8 @@ export default function EditModal(props) {
     : style.modalHidden;
   const cancelClick = props.cancelClick;
   const gameId = props.gameId;
-  const gameList = props.gameList;
   const gameUpdate = props.gameUpdate;
   const setGameUpdate = props.setGameUpdate;
-  const gameIndex = gameList.findIndex((item) => item.id === Number(gameId));
   const editedName = useRef();
   const editedDescription = useRef();
 
@@ -19,10 +17,9 @@ export default function EditModal(props) {
   function handleCancelClick() {
     cancelClick();
   }
-
+  //Handle save button click
   function handleSaveClick() {
-    console.log("Save clicked");
-    console.log(gameList[gameIndex].title);
+    //Organise data to send to put request
     const data = {
       game_id: gameId,
       game_name: editedName.current?.value,
@@ -37,9 +34,12 @@ export default function EditModal(props) {
     })
       .then((result) => result.json)
       .then((info) => console.log(info));
+      //Clear input fields in modal
       editedName.current.value = "";
       editedDescription.current.value = "";
+      //Toggle gameUpdate state so component re-renders
       setGameUpdate(!gameUpdate);
+      //Trigger cancel function so modal closes
       cancelClick()
   }
 
