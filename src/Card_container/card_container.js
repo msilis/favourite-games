@@ -5,7 +5,6 @@ import deleteIcon from "../Media/icons8-remove-30.png";
 export default function CardContainer(props) {
   //props from app component
   const games = props.gameList;
-  const deleteGame = props.deleteGame;
   const setDeleteGame = props.setDeleteGame;
   const editClick = props.showModal;
   const setGameId = props.setGameId;
@@ -33,10 +32,10 @@ export default function CardContainer(props) {
         },
       }).then((response) => console.log(response));
       //Set delete state to whatever is opposite of already set state causing rerender of game card component
-      setDeleteGame(!deleteGame);
+      setDeleteGame(true);
     } else if (event.target["id"] === "edit") {
       /* console.log(event.target.parentNode.parentNode["id"]) */
-      setGameId(event.target.parentNode.parentNode["id"])
+      setGameId(event.target.parentNode.parentNode["id"]);
       //Call edit click function to bring up modal
       editClick();
     }

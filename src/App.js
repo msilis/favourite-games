@@ -32,6 +32,8 @@ function App() {
       }));
 
       setGames(gameArray);
+      setDeleteGame(false);
+      setGameUpdate(false);
     }
     getGames();
   }, [addGame, deleteGame, gameUpdate]);
@@ -58,7 +60,6 @@ function App() {
       <CardContainer
         gameList={games}
         addGame={addGame}
-        deleteGame={deleteGame}
         setDeleteGame={setDeleteGame}
         showModal={handleEditClick}
         setGameId={handleGameId}

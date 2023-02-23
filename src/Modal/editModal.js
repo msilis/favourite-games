@@ -8,7 +8,6 @@ export default function EditModal(props) {
     : style.modalHidden;
   const cancelClick = props.cancelClick;
   const gameId = props.gameId;
-  const gameUpdate = props.gameUpdate;
   const setGameUpdate = props.setGameUpdate;
   const editedName = useRef();
   const editedDescription = useRef();
@@ -34,13 +33,13 @@ export default function EditModal(props) {
     })
       .then((result) => result.json)
       .then((info) => console.log(info));
-      //Clear input fields in modal
-      editedName.current.value = "";
-      editedDescription.current.value = "";
-      //Toggle gameUpdate state so component re-renders
-      setGameUpdate(!gameUpdate);
-      //Trigger cancel function so modal closes
-      cancelClick()
+    //Clear input fields in modal
+    editedName.current.value = "";
+    editedDescription.current.value = "";
+    //Toggle gameUpdate state so component re-renders
+    setGameUpdate(true);
+    //Trigger cancel function so modal closes
+    cancelClick();
   }
 
   return (
@@ -48,10 +47,7 @@ export default function EditModal(props) {
       <div className={style.modalContainer}>
         <h4>Edit Game Info</h4>
         <input placeholder="New name" ref={editedName}></input>
-        <input
-          placeholder="New Description"
-          ref={editedDescription}
-        ></input>
+        <input placeholder="New Description" ref={editedDescription}></input>
         <button
           type="submit"
           onClick={handleSaveClick}
